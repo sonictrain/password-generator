@@ -88,8 +88,60 @@ const upperCasedCharacters = [
   'Z'
 ];
 
+let charset = [];
+
+let pwdConfig = {
+  length: 8,
+  chars: {
+      lowerCase: false,
+      upperCase: false,
+      number: false,
+      special: false,
+  }
+}
+
 // Function to prompt user for password options
 function getPasswordOptions() {
+
+  // do while loop to ask multiple times the same set of questions until at least one is true
+  do {
+      charset = []
+
+      pwdConfig.chars.lowerCase = confirm("Do you want any lower case characters in your password?");
+      if (pwdConfig.chars.lowerCase) {
+        charset.concat(lowerCasedCharacters)
+      }
+
+      pwdConfig.chars.upperCase = confirm("Do you want any upper case characters in your password?");
+      if (pwdConfig.chars.upperCase) {
+        charset.concat(upperCasedCharacters)
+      }
+
+      pwdConfig.chars.number = confirm("Do you want any numbers in your password?");
+      if (pwdConfig.chars.number) {
+        charset.concat(numericCharacters)
+      }
+
+      pwdConfig.chars.special = confirm("Do you want any special characters in your password?");
+      if (pwdConfig.chars.special) {
+        charset.concat(specialCharacters)
+      }
+
+  } while (Object.values(pwdConfig.chars).filter((c) => c === true).length < 1);
+
+  arrayLength:
+  while (true) {
+
+    let length = prompt("How long do you want your password to be?");
+    
+    if (Number(length) >= 8 && Number(length) <= 128) {
+      pwdConfig.length = Number(length);
+      break arrayLength;
+    } else {
+      alert("Please insert a number between 8 and 128.")
+    }
+
+  }
 
 }
 
@@ -100,7 +152,7 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-
+  getPasswordOptions()
 }
 
 // Get references to the #generate element
