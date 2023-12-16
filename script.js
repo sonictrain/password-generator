@@ -105,26 +105,30 @@ function getPasswordOptions() {
 
   // do while loop to ask multiple times the same set of questions until at least one is true
   do {
-      charset = []
+      charset = [];
 
       pwdConfig.chars.lowerCase = confirm("Do you want any lower case characters in your password?");
       if (pwdConfig.chars.lowerCase) {
-        charset.concat(lowerCasedCharacters)
+        lowerCasedCharacters.map((c) => charset.push(c));
+        console.log(charset);
       }
 
       pwdConfig.chars.upperCase = confirm("Do you want any upper case characters in your password?");
       if (pwdConfig.chars.upperCase) {
-        charset.concat(upperCasedCharacters)
+        upperCasedCharacters.map((c) => charset.push(c));
+        console.log(charset);
       }
 
       pwdConfig.chars.number = confirm("Do you want any numbers in your password?");
       if (pwdConfig.chars.number) {
-        charset.concat(numericCharacters)
+        numericCharacters.map((c) => charset.push(c));
+        console.log(charset);
       }
 
       pwdConfig.chars.special = confirm("Do you want any special characters in your password?");
       if (pwdConfig.chars.special) {
-        charset.concat(specialCharacters)
+        specialCharacters.map((c) => charset.push(c));
+        console.log(charset);
       }
 
   } while (Object.values(pwdConfig.chars).filter((c) => c === true).length < 1);
@@ -133,12 +137,12 @@ function getPasswordOptions() {
   while (true) {
 
     let length = prompt("How long do you want your password to be?");
-    
+
     if (Number(length) >= 8 && Number(length) <= 128) {
       pwdConfig.length = Number(length);
       break arrayLength;
     } else {
-      alert("Please insert a number between 8 and 128.")
+      alert("Please insert a number between 8 and 128.");
     }
 
   }
@@ -147,12 +151,20 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  arr[Math.floor(Math.random() * pwdConfig.length)];
 }
+
+let generatedPwd = [];
 
 // Function to generate password with user input
 function generatePassword() {
   getPasswordOptions()
+  console.log(charset);
+  for (let i=0; i < pwdConfig.length; i++) {
+    generatedPwd.push(getRandom(charset));
+  }
+  console.log(generatedPwd);
+  return generatedPwd.join("");
 }
 
 // Get references to the #generate element
