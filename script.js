@@ -154,6 +154,20 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   getPasswordOptions()
+  
+  // create empty array according to the length choosen
+  // by the user and fill every element with empty strings.
+  let arrayPwd = new Array(pwdConfig.length).fill('');
+
+  // run getRandom function on every element of the array using a map
+  arrayPwd.map(
+    (c) =>
+    arrayPwd[arrayPwd.indexOf(c)] = getRandom(charSet)
+  )
+
+  // join the array inn a string a return
+  return arrayPwd.join('');
+
 }
 
 // Get references to the #generate element
