@@ -88,15 +88,15 @@ const upperCasedCharacters = [
   'Z'
 ];
 
-let charset = [];
+let charSet = [];
 
 let pwdConfig = {
   length: 8,
   chars: {
-      lowerCase: false,
-      upperCase: false,
-      number: false,
-      special: false,
+    lowerCase: false,
+    upperCase: false,
+    number: false,
+    special: false,
   }
 }
 
@@ -105,44 +105,40 @@ function getPasswordOptions() {
 
   // do while loop to ask multiple times the same set of questions until at least one is true
   do {
-      charset = [];
+    charSet = [];
 
-      pwdConfig.chars.lowerCase = confirm("Do you want any lower case characters in your password?");
-      if (pwdConfig.chars.lowerCase) {
-        lowerCasedCharacters.map((c) => charset.push(c));
-        console.log(charset);
-      }
+    pwdConfig.chars.lowerCase = confirm("Do you want any lower case characters in your password?");
+    if (pwdConfig.chars.lowerCase) {
+      lowerCasedCharacters.map((c) => charSet.push(c));
+    }
 
-      pwdConfig.chars.upperCase = confirm("Do you want any upper case characters in your password?");
-      if (pwdConfig.chars.upperCase) {
-        upperCasedCharacters.map((c) => charset.push(c));
-        console.log(charset);
-      }
+    pwdConfig.chars.upperCase = confirm("Do you want any upper case characters in your password?");
+    if (pwdConfig.chars.upperCase) {
+      upperCasedCharacters.map((c) => charSet.push(c));
+    }
 
-      pwdConfig.chars.number = confirm("Do you want any numbers in your password?");
-      if (pwdConfig.chars.number) {
-        numericCharacters.map((c) => charset.push(c));
-        console.log(charset);
-      }
+    pwdConfig.chars.number = confirm("Do you want any numbers in your password?");
+    if (pwdConfig.chars.number) {
+      numericCharacters.map((c) => charSet.push(c));
+    }
 
-      pwdConfig.chars.special = confirm("Do you want any special characters in your password?");
-      if (pwdConfig.chars.special) {
-        specialCharacters.map((c) => charset.push(c));
-        console.log(charset);
-      }
+    pwdConfig.chars.special = confirm("Do you want any special characters in your password?");
+    if (pwdConfig.chars.special) {
+      specialCharacters.map((c) => charSet.push(c));
+    }
 
   } while (Object.values(pwdConfig.chars).filter((c) => c === true).length < 1);
 
-  arrayLength:
+  arrayLengthPrompt:
   while (true) {
 
-    let length = prompt("How long do you want your password to be?");
+    let length = Number(prompt("How long do you want your password to be?"));
 
-    if (Number(length) >= 8 && Number(length) <= 128) {
-      pwdConfig.length = Number(length);
-      break arrayLength;
+    if (!isNaN(length) && length >= 8 && length <= 128) {
+      pwdConfig.length = length;
+      break arrayLengthPrompt; // break the array if the user's response is valid.
     } else {
-      alert("Please insert a number between 8 and 128.");
+      alert("Please insert a valid number between 8 and 128:");
     }
 
   }
@@ -151,20 +147,13 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  arr[Math.floor(Math.random() * pwdConfig.length)];
+  return arr[Math.floor(Math.random() * pwdConfig.length)];
 }
 
-let generatedPwd = [];
 
 // Function to generate password with user input
 function generatePassword() {
   getPasswordOptions()
-  console.log(charset);
-  for (let i=0; i < pwdConfig.length; i++) {
-    generatedPwd.push(getRandom(charset));
-  }
-  console.log(generatedPwd);
-  return generatedPwd.join("");
 }
 
 // Get references to the #generate element
