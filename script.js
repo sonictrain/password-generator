@@ -147,7 +147,7 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  return arr[Math.floor(Math.random() * pwdConfig.length)];
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 // Fisher-Yates sorting algorithm from
@@ -165,11 +165,11 @@ function generatePassword() {
   getPasswordOptions()
     
   // create empty array according to the length choosen
-  // by the user and fill every element with empty strings.
+  // by the user and fill every element with empty strings
   let arrayPwd = new Array(pwdConfig.length - Object.values(pwdConfig.chars).filter((c) => c === true).length).fill('');
 
   // run getRandom function on every element of the array using a map
-  arrayPwd.map((c) => arrayPwd[arrayPwd.indexOf(c)] = getRandom(charSet))
+  arrayPwd.map((c) => arrayPwd[arrayPwd.indexOf(c)] = getRandom(charSet));
 
   if (pwdConfig.chars.lowerCase) {
     arrayPwd.push(getRandom(lowerCasedCharacters));
