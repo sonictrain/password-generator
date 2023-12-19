@@ -150,24 +150,47 @@ function getRandom(arr) {
   return arr[Math.floor(Math.random() * pwdConfig.length)];
 }
 
+// Fisher-Yates sorting algorithm from
+// https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/
+function shuffle(arr) { 
+  for (let i = arr.length - 1; i > 0; i--) { 
+    const j = Math.floor(Math.random() * (i + 1)); 
+    [arr[i], arr[j]] = [arr[j], arr[i]]; 
+  } 
+  return arr; 
+};
 
 // Function to generate password with user input
 function generatePassword() {
   getPasswordOptions()
-  
+    
   // create empty array according to the length choosen
   // by the user and fill every element with empty strings.
-  let arrayPwd = new Array(pwdConfig.length).fill('');
+  let arrayPwd = new Array(pwdConfig.length - Object.values(pwdConfig.chars).filter((c) => c === true).length).fill('');
 
   // run getRandom function on every element of the array using a map
-  arrayPwd.map(
-    (c) =>
-    arrayPwd[arrayPwd.indexOf(c)] = getRandom(charSet)
-  )
+  arrayPwd.map((c) => arrayPwd[arrayPwd.indexOf(c)] = getRandom(charSet))
+
+  if (pwdConfig.chars.lowerCase) {
+    arrayPwd.push(getRandom(lowerCasedCharacters));
+  }
+
+  if (pwdConfig.chars.upperCase) {
+    arrayPwd.push(getRandom(upperCasedCharacters));
+  }
+
+  if (pwdConfig.chars.number) {
+    arrayPwd.push(getRandom(numericCharacters));
+  }
+
+  if (pwdConfig.chars.special) {
+    arrayPwd.push(getRandom(specialCharacters));
+  }
+
+  arrayPwd = shuffle(arrayPwd);
 
   // join the array inn a string a return
   return arrayPwd.join('');
-
 }
 
 // Get references to the #generate element
