@@ -1,5 +1,5 @@
 # password-generator
-[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com) ![js-percentage](https://img.shields.io/badge/JavaScript-58.8%-blue)
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com) ![js-percentage](https://img.shields.io/badge/JavaScript-58.8-blue)
 
 A password generator web application that seamlessly generates secure passwords, incorporating both lower and uppercased characters, numbers, and symbols, with a capacity of up to 128 characters.
 
