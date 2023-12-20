@@ -1,8 +1,0 @@
-{
-    "all": true,
-    "include": [
-        "src/**/*.js"
-    ],
-    "branches": 50,
-    "lines": 50
-}

@@ -1,4 +1,6 @@
 # password-generator
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com) ![js-percentage](https://img.shields.io/badge/JavaScript-58.8%-blue)
+
 A password generator web application that seamlessly generates secure passwords, incorporating both lower and uppercased characters, numbers, and symbols, with a capacity of up to 128 characters.
 
 Live prototype hosted on Github Pages: https://sonictrain.github.io/password-generator/
@@ -46,8 +48,11 @@ and finally launch the `index.html` file with a browser of your choice.
 Alternatively feel free to visit the web app from [this link](https://sonictrain.github.io/nicola-brucoli-portfolio/).
 
 ## Credits
-Fisher-Yates sorting algorithm implemented in this project is based on the excellent explanation and code provided by FreeCodeCamp. Check out the original article: [How to Shuffle an Array of Items using JavaScript or TypeScript](https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/).
+- Fisher-Yates sorting algorithm implemented in this project is based on the excellent explanation and code provided by FreeCodeCamp. Check out the original article: [How to Shuffle an Array of Items using JavaScript or TypeScript](https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/).
+- [Shield.io](https://shields.io/) for their awesome badges!
 
 ## License
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+
 Copyright (c) Nicola Brucoli. All rights reserved.
 Licensed under the [MIT](./LICENSE) license.
